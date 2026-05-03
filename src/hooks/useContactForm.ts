@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { serviceContainer } from '../services/serviceContainer';
+
 import { ContactRequest } from '../types/domain';
 
 const initialState: ContactRequest = {
@@ -50,13 +50,16 @@ export const useContactForm = () => {
     setStatus('submitting');
 
     try {
-      await serviceContainer.contactService.submit(data);
+      const text = `Hola DevSoft, me interesa la propuesta con prototipo interactivo gratis.\n\nMis datos son:\nNombre: ${data.name}\nEmail: ${data.email}\nEmpresa: ${data.company}\n\nDetalles del proyecto:\n${data.message}`;
+      const url = `https://wa.me/56926252821?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+      
       setStatus('success');
       setData(initialState);
       return true;
     } catch (submissionError) {
       setStatus('error');
-      setError(submissionError instanceof Error ? submissionError.message : 'No fue posible enviar el formulario.');
+      setError('No fue posible abrir WhatsApp.');
       return false;
     }
   };

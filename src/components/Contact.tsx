@@ -76,17 +76,7 @@ const Contact: React.FC = () => {
               autoComplete="organization"
               required
             />
-            <select
-              name="budget"
-              value={data.budget}
-              onChange={(e) => updateField('budget', e.target.value)}
-              disabled={isSubmitting}
-            >
-              <option value="">Presupuesto aproximado (CLP)</option>
-              <option value="10m-20m">10 - 20 MM CLP</option>
-              <option value="20m-50m">20 - 50 MM CLP</option>
-              <option value="50m+">50+ MM CLP</option>
-            </select>
+
             <textarea
               name="message"
               placeholder="Cuéntanos qué proceso quieres optimizar y tus plazos"

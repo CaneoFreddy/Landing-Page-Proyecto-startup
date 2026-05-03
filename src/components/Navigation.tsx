@@ -33,7 +33,6 @@ const Navigation: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={whatsappImage} alt="WhatsApp" className="whatsapp-img-desktop" />
           Hablar por WhatsApp
         </a>
 
