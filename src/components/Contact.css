@@ -37,7 +37,7 @@
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--brand-50);
-  background: linear-gradient(140deg, var(--brand-600), var(--accent-600));
+  background: var(--brand-600);
 }
 
 .info-item h4 {

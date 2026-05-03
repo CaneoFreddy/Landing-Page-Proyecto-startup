@@ -40,14 +40,6 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className="footer-section">
-            <h4>Oficina</h4>
-            <ul>
-              <li>Madrid, Espana</li>
-              <li>hello@devsoft.studio</li>
-              <li>+34 123 456 789</li>
-            </ul>
-          </div>
         </div>
 
         <div className="footer-bottom">

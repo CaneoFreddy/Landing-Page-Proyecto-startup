@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Navigation.css';
 import { navLinks } from '../data/siteContent';
 
+import whatsappImage from '../data/whatsapp.jpg';
+
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,10 +29,11 @@ const Navigation: React.FC = () => {
 
         <a
           className="nav-cta whatsapp"
-          href="https://wa.me/56926252821?text=Hola%20DevSoft%2C%20quiero%20agendar%20la%20reunion%20inicial%20gratis."
+          href="https://wa.me/56926252821?text=Hola%20DevSoft%2C%20me%20interesa%20la%20propuesta%20con%20prototipo%20interactivo%20gratis."
           target="_blank"
           rel="noopener noreferrer"
         >
+          <img src={whatsappImage} alt="WhatsApp" className="whatsapp-img-desktop" />
           Hablar por WhatsApp
         </a>
 
@@ -40,6 +43,17 @@ const Navigation: React.FC = () => {
           <span></span>
         </div>
       </div>
+      <a
+        className="whatsapp-float"
+        href="https://wa.me/56926252821?text=Hola%20DevSoft%2C%20me%20interesa%20la%20propuesta%20con%20prototipo%20interactivo%20gratis."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Hablar por WhatsApp"
+      >
+        <div className="whatsapp-float-img-wrapper">
+          <img src={whatsappImage} alt="WhatsApp" className="whatsapp-img-float" />
+        </div>
+      </a>
     </nav>
   );
 };

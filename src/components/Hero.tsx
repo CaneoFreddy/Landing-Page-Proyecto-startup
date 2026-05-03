@@ -7,15 +7,15 @@ const Hero: React.FC = () => {
       <div className="hero-bg" />
       <div className="container hero-content">
         <div className="hero-text animate-fade-up">
-          <p className="eyebrow">Reunión inicial gratis</p>
-          <h1>Optimiza tu operación con sistemas web y móviles a la medida</h1>
-          <p>
-            Analizamos tus procesos, eliminamos tareas manuales y construimos software que reduce
-            tiempos y previene errores. Equipo local en Chile con experiencia en logística,
-            mantenimiento y operación. Reunión inicial gratis y propuesta en 72h hábiles.
+          <p className="eyebrow">Propuesta y Prototipo Interactivo Gratis</p>
+          <h1 className="hero-title">
+            Transformamos tus procesos con software a medida
+          </h1>
+          <p className="hero-description">
+            Diseñamos y desarrollamos soluciones web y móviles que reducen costos y aceleran tu empresa. Nos encargamos de todo: desde la idea hasta el mantenimiento y operación. Obtén una propuesta estratégica y tu prototipo interactivo sin costo.
           </p>
           <div className="hero-buttons">
-            <a className="btn btn-primary" href="#contacto">Agendar reunión gratuita</a>
+            <a className="btn btn-primary" href="#contacto">Solicitar prototipo gratis</a>
             <a className="btn btn-secondary" href="#proyectos">Ver proyectos</a>
           </div>
         </div>

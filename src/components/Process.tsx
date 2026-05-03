@@ -8,7 +8,7 @@ const Process = () => {
 
   const stepDetails: Record<string, string[]> = {
     ps1: [
-      'Reunión inicial gratis y levantamiento de procesos.',
+      'Levantamiento de procesos y diseño de prototipo interactivo gratis.',
       'Priorización de mejoras por impacto operativo.',
       'Definición de objetivos y KPIs iniciales.',
     ],

@@ -18,15 +18,14 @@ const Contact: React.FC = () => {
       <div className="container">
         <div className="section-headline">
           <p className="eyebrow">Contacto</p>
-          <h2>Reunión inicial gratis + propuesta en 72h hábiles</h2>
-        </div>
-
-        <div className="contact-content">
-          <div className="contact-info">
+          <h2>Propuesta y Prototipo Interactivo Gratis en 72h</h2>
+          <p>Déjanos tus datos o escríbenos directo por WhatsApp y agendemos la sesión de descubrimiento.</p>
+          
+          <div className="contact-benefits">
             <div className="info-item">
               <span className="info-icon">01</span>
               <div>
-                <h4>Reunión inicial gratis</h4>
+                <h4>Propuesta y Prototipo Gratis</h4>
                 <p>Entendemos procesos, metas y prioridades con foco operativo.</p>
               </div>
             </div>
@@ -99,10 +98,10 @@ const Contact: React.FC = () => {
             />
 
             {error && <p className="form-message error">{error}</p>}
-            {isSuccess && <p className="form-message success">Solicitud enviada. Te contactaremos para agendar el diagnóstico sin costo.</p>}
+            {isSuccess && <p className="form-message success">Solicitud enviada. Te contactaremos para enviarte tu propuesta y prototipo gratis.</p>}
 
             <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Enviando...' : 'Solicitar diagnóstico sin costo'}
+              {isSubmitting ? 'Enviando...' : 'Solicitar prototipo gratis'}
             </button>
           </form>
         </div>

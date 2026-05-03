@@ -87,7 +87,7 @@ export const projects: ProjectItem[] = [
 export const processSteps: ProcessStep[] = [
   {
     id: 'ps1',
-    title: '1. Reunión inicial gratis',
+    title: '1. Propuesta y Prototipo Interactivo Gratis',
     description: 'Diagnóstico sin costo y propuesta en 72h hábiles.',
   },
   {
