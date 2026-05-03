@@ -1,0 +1,81 @@
+.estimator {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9f0 100%);
+}
+
+.estimator-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+}
+
+.estimator-panel,
+.estimator-result {
+  background: var(--surface-elevated);
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  padding: 22px;
+}
+
+.estimator-form {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.estimator-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-700);
+  font-weight: 600;
+}
+
+.estimator-form select,
+.estimator-form input[type='range'] {
+  width: 100%;
+  font: inherit;
+}
+
+.estimator-form select {
+  padding: 11px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: #ffffff;
+  color: var(--ink-900);
+}
+
+.estimator-result h3 {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.result-grid {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.result-label {
+  color: var(--ink-600);
+  font-size: 0.9rem;
+}
+
+.result-value {
+  color: var(--ink-900);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.result-note {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  color: var(--ink-600);
+  line-height: 1.55;
+}
+
+@media (max-width: 960px) {
+  .estimator-grid {
+    grid-template-columns: 1fr;
+  }
+}

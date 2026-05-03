@@ -1,0 +1,131 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  width: min(1240px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.section-block {
+  padding: 92px 0;
+}
+
+section {
+  scroll-margin-top: 110px;
+}
+
+.section-headline {
+  max-width: 860px;
+  display: grid;
+  gap: 10px;
+}
+
+.section-headline p:not(.eyebrow) {
+  color: var(--ink-700);
+  line-height: 1.6;
+  max-width: 70ch;
+}
+
+.section-headline h2 {
+  margin-top: 10px;
+  font-size: clamp(1.8rem, 3.8vw, 3rem);
+  line-height: 1.14;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-800);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(15, 138, 139, 0.14));
+  border: 1px solid rgba(15, 138, 139, 0.18);
+}
+
+.btn {
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(140deg, var(--brand-600), var(--brand-800));
+  color: var(--brand-50);
+  box-shadow: 0 16px 30px rgba(15, 138, 139, 0.3), 0 6px 16px rgba(249, 115, 22, 0.18);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(15, 138, 139, 0.34), 0 8px 18px rgba(249, 115, 22, 0.22);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink-900);
+  border-color: rgba(11, 27, 44, 0.2);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(15, 138, 139, 0.35);
+  outline-offset: 2px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.75s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.75s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  .section-block {
+    padding: 68px 0;
+  }
+}
