@@ -74,6 +74,13 @@
   align-self: flex-start;
 }
 
+.service-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 @media (max-width: 1000px) {
   .services-grid {
     grid-template-columns: 1fr;

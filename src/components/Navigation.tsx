@@ -25,7 +25,14 @@ const Navigation: React.FC = () => {
           ))}
         </div>
 
-        <a className="nav-cta" href="#contacto">Empezar ahora</a>
+        <a
+          className="nav-cta whatsapp"
+          href="https://wa.me/56926252821?text=Hola%20DevSoft%2C%20quiero%20agendar%20la%20reunion%20inicial%20gratis."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hablar por WhatsApp
+        </a>
 
         <div className="hamburger" onClick={toggleMenu}>
           <span></span>

@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
       <div className="container">
         <div className="section-headline">
           <p className="eyebrow">Contacto</p>
-          <h2>Optimicemos tu operación</h2>
+          <h2>Reunión inicial gratis + propuesta en 72h hábiles</h2>
         </div>
 
         <div className="contact-content">
@@ -26,22 +26,22 @@ const Contact: React.FC = () => {
             <div className="info-item">
               <span className="info-icon">01</span>
               <div>
-                <h4>Diagnóstico operativo</h4>
-                <p>Detectamos dónde se pierde tiempo y qué mejorar primero.</p>
+                <h4>Reunión inicial gratis</h4>
+                <p>Entendemos procesos, metas y prioridades con foco operativo.</p>
               </div>
             </div>
             <div className="info-item">
               <span className="info-icon">02</span>
               <div>
-                <h4>Plan a la medida</h4>
-                <p>Roadmap con impacto, tiempos y costos claros.</p>
+                <h4>Propuesta en 72h hábiles</h4>
+                <p>Alcance, tiempos y costos claros en CLP.</p>
               </div>
             </div>
             <div className="info-item">
               <span className="info-icon">03</span>
               <div>
-                <h4>Implementación eficiente</h4>
-                <p>Entregas rápidas para mejorar productividad desde el primer mes.</p>
+                <h4>Reuniones periódicas</h4>
+                <p>Mínimo 4 al mes, presenciales o remotas, hasta finalizar. Actualizaciones posteriores según necesidad.</p>
               </div>
             </div>
           </div>
@@ -83,14 +83,14 @@ const Contact: React.FC = () => {
               onChange={(e) => updateField('budget', e.target.value)}
               disabled={isSubmitting}
             >
-              <option value="">¿Cuál es tu presupuesto aproximado?</option>
-              <option value="15k-30k">15k - 30k EUR</option>
-              <option value="30k-60k">30k - 60k EUR</option>
-              <option value="60k+">60k+ EUR</option>
+              <option value="">Presupuesto aproximado (CLP)</option>
+              <option value="10m-20m">10 - 20 MM CLP</option>
+              <option value="20m-50m">20 - 50 MM CLP</option>
+              <option value="50m+">50+ MM CLP</option>
             </select>
             <textarea
               name="message"
-              placeholder="Cuéntanos qué proceso quieres optimizar"
+              placeholder="Cuéntanos qué proceso quieres optimizar y tus plazos"
               rows={5}
               value={data.message}
               onChange={(e) => updateField('message', e.target.value)}
@@ -99,10 +99,10 @@ const Contact: React.FC = () => {
             />
 
             {error && <p className="form-message error">{error}</p>}
-            {isSuccess && <p className="form-message success">Solicitud enviada. Te contactaremos en menos de 24h.</p>}
+            {isSuccess && <p className="form-message success">Solicitud enviada. Te contactaremos para agendar el diagnóstico sin costo.</p>}
 
             <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Enviando...' : 'Cotizar optimización'}
+              {isSubmitting ? 'Enviando...' : 'Solicitar diagnóstico sin costo'}
             </button>
           </form>
         </div>

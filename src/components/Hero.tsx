@@ -7,14 +7,15 @@ const Hero: React.FC = () => {
       <div className="hero-bg" />
       <div className="container hero-content">
         <div className="hero-text animate-fade-up">
-          <p className="eyebrow">Eficiencia operativa</p>
-          <h1>Sistemas web y móviles a la medida para mejorar tu eficiencia</h1>
+          <p className="eyebrow">Reunión inicial gratis</p>
+          <h1>Optimiza tu operación con sistemas web y móviles a la medida</h1>
           <p>
             Analizamos tus procesos, eliminamos tareas manuales y construimos software que reduce
-            tiempos y errores. Equipo local en Chile con foco en resultados medibles.
+            tiempos y previene errores. Equipo local en Chile con experiencia en logística,
+            mantenimiento y operación. Reunión inicial gratis y propuesta en 72h hábiles.
           </p>
           <div className="hero-buttons">
-            <a className="btn btn-primary" href="#contacto">Agendar diagnóstico</a>
+            <a className="btn btn-primary" href="#contacto">Agendar reunión gratuita</a>
             <a className="btn btn-secondary" href="#proyectos">Ver proyectos</a>
           </div>
         </div>
@@ -22,11 +23,11 @@ const Hero: React.FC = () => {
           <div className="illustration" role="presentation">
             <article className="floating-card card-1">
               <p>Horas ahorradas</p>
-              <strong>6-10h/semana</strong>
+              <strong>10-15h/semana</strong>
             </article>
             <article className="floating-card card-2">
-              <p>Errores</p>
-              <strong>15-25% menos</strong>
+              <p>Prevención</p>
+              <strong>15-25% errores evitados</strong>
             </article>
             <article className="floating-card card-3">
               <p>Control</p>

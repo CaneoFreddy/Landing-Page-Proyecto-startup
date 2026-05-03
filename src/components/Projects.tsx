@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Projects.css';
 import { useProjectCatalog } from '../hooks/useProjectCatalog';
+import { ProjectItem } from '../types/domain';
+import InfoModal from './InfoModal';
 
 const Projects: React.FC = () => {
   const {
@@ -10,6 +12,37 @@ const Projects: React.FC = () => {
     filteredProjects,
   } = useProjectCatalog();
 
+  const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
+
+  const projectDetails: Record<string, string[]> = {
+    p1: [
+      'KPIs por rol y seguimiento móvil.',
+      'Alertas de cumplimiento y productividad.',
+      'Integración con RR.HH. y operaciones.',
+    ],
+    p2: [
+      'Cálculo de rutas, km y variables operativas.',
+      'Validaciones automáticas en liquidaciones.',
+      'Reportes por flota y período.',
+    ],
+    p3: [
+      'QR por trabajador con registro de salida.',
+      'Trazabilidad completa por turno.',
+      'Alertas de stock crítico.',
+    ],
+    p4: [
+      'Flujos por correo según respuesta del proveedor.',
+      'SLA y seguimiento centralizado.',
+      'Historial auditado de reclamos.',
+    ],
+  };
+
+  const getProjectDetails = (project: ProjectItem) => [
+    ...(projectDetails[project.id] ?? []),
+    `Industria: ${project.industry}`,
+    `Tecnologías: ${project.technologies.join(', ')}`,
+  ];
+
   return (
     <section id="proyectos" className="projects section-block">
       <div className="container">
@@ -17,6 +50,7 @@ const Projects: React.FC = () => {
           <p className="eyebrow">Proyectos a la medida</p>
           <h2>Optimización operativa con resultados medibles</h2>
           <p>Resultados estimados según contexto y alcance de cada operación.</p>
+          <p>Experiencia en logística, mantenimiento y operación. Nos adaptamos a tu caso particular.</p>
         </div>
 
         <div className="project-filters" role="tablist" aria-label="Filtro de proyectos">
@@ -45,10 +79,22 @@ const Projects: React.FC = () => {
                     <span key={tech} className="tech-tag">{tech}</span>
                   ))}
                 </div>
+                <div className="project-actions">
+                  <button className="text-link" type="button" onClick={() => setActiveProject(project)}>
+                    Ver detalles
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
+        <InfoModal
+          isOpen={Boolean(activeProject)}
+          title={activeProject?.title ?? ''}
+          description={activeProject?.description}
+          details={activeProject ? getProjectDetails(activeProject) : []}
+          onClose={() => setActiveProject(null)}
+        />
       </div>
     </section>
   );

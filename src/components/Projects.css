@@ -98,6 +98,10 @@
   margin-top: 12px;
 }
 
+.project-actions {
+  margin-top: 14px;
+}
+
 .tech-tag {
   background: rgba(11, 27, 44, 0.06);
   color: var(--ink-700);

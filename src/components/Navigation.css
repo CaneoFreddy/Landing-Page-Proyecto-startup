@@ -78,6 +78,15 @@
   box-shadow: 0 14px 26px rgba(15, 138, 139, 0.32);
 }
 
+.nav-cta.whatsapp {
+  background: linear-gradient(135deg, #25d366, #16a34a);
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.28);
+}
+
+.nav-cta.whatsapp:hover {
+  box-shadow: 0 16px 28px rgba(22, 163, 74, 0.35);
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
