@@ -50,7 +50,7 @@ export const useContactForm = () => {
     setStatus('submitting');
 
     try {
-      const text = `Hola DevSoft, me interesa la propuesta con prototipo interactivo gratis.\n\nMis datos son:\nNombre: ${data.name}\nEmail: ${data.email}\nEmpresa: ${data.company}\n\nDetalles del proyecto:\n${data.message}`;
+      const text = `Hola BinCode, me interesa la propuesta con prototipo interactivo gratis.\n\nMis datos son:\nNombre: ${data.name}\nEmail: ${data.email}\nEmpresa: ${data.company}\n\nDetalles del proyecto:\n${data.message}`;
       const url = `https://wa.me/56926252821?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
       
