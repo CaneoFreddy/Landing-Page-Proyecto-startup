@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>DevSoft</h3>
+            <h3>BinCode</h3>
             <p>
               Especialistas en aplicaciones web y móviles que crecen con tu negocio.
               Confiables, rápidas y hermosas.
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {currentYear} DevSoft. Todos los derechos reservados.</p>
+          <p>&copy; {currentYear} BinCode. Todos los derechos reservados.</p>
           <p>Aplicaciones web y móviles que transforman negocios.</p>
         </div>
       </div>

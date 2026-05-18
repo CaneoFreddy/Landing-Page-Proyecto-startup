@@ -1,8 +1,8 @@
-# DevSoft - Aplicaciones Web y Móviles
+# BinCode - Aplicaciones Web y Móviles
 
-Landing page profesional de DevSoft, especialistas en desarrollo de aplicaciones web y móviles de alto impacto.
+Landing page profesional de BinCode, especialistas en desarrollo de aplicaciones web y móviles de alto impacto.
 
-## 🎯 Acerca de DevSoft
+## 🎯 Acerca de BinCode
 
 Ayudamos a empresas a llevar sus ideas a la realidad con aplicaciones web y móviles de calidad. Nos enorgullece trabajar con clientes que buscan soluciones confiables y diseño de excelencia.
 
@@ -17,7 +17,7 @@ Ayudamos a empresas a llevar sus ideas a la realidad con aplicaciones web y móv
 
 ## 📋 Secciones
 
-- **Hero**: Presentación clara de qué es DevSoft
+- **Hero**: Presentación clara de qué es BinCode
 - **Servicios**: Aplicaciones Web, Móviles y Consultoría
 - **Características**: Qué te ofrecemos como partner técnico
 - **Proyectos**: Casos de éxito y trabajos realizados

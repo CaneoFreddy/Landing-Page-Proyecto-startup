@@ -15,8 +15,8 @@ const Navigation: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <span className="logo-icon">D</span>
-          <span>DevSoft</span>
+          <span className="logo-icon">B</span>
+          <span>BinCode</span>
         </div>
         
         <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
@@ -29,7 +29,7 @@ const Navigation: React.FC = () => {
 
         <a
           className="nav-cta whatsapp"
-          href="https://wa.me/56926252821?text=Hola%20DevSoft%2C%20me%20interesa%20la%20propuesta%20con%20prototipo%20interactivo%20gratis."
+          href="https://wa.me/56926252821?text=Hola%20BinCode%2C%20me%20interesa%20la%20propuesta%20con%20prototipo%20interactivo%20gratis."
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -44,7 +44,7 @@ const Navigation: React.FC = () => {
       </div>
       <a
         className="whatsapp-float"
-        href="https://wa.me/56926252821?text=Hola%20DevSoft%2C%20me%20interesa%20la%20propuesta%20con%20prototipo%20interactivo%20gratis."
+        href="https://wa.me/56926252821?text=Hola%20BinCode%2C%20me%20interesa%20la%20propuesta%20con%20prototipo%20interactivo%20gratis."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Hablar por WhatsApp"
