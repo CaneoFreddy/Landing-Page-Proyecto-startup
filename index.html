@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>BINCODEQ | Software & Consulting</title>
 <meta name="description" content="BINCODEQ Software & Consulting: desarrollo de software a medida, integración de Inteligencia Artificial y consultoría tecnológica en Chile.">
 <style>
@@ -105,6 +106,7 @@ img,svg{display:block}
 .theme-icon-sun{display:none}
 :root[data-theme="dark"] .theme-icon-moon{display:none}
 :root[data-theme="dark"] .theme-icon-sun{display:block}
+.nav-controls{display:flex;align-items:center;gap:10px;margin-left:16px}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:.3s}
 
@@ -305,11 +307,10 @@ footer a:hover{color:var(--cyan)}
 }
 @media (max-width:820px){
   .burger{display:block}
+  .nav-controls{margin-left:auto;gap:8px}
   .menu{position:absolute;top:74px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--navy);padding:14px 20px 22px;gap:4px;border-bottom:1px solid rgba(0,210,255,.2);display:none}
   .menu.open{display:flex}
   .menu .btn-nav{margin:8px 0 0;text-align:center}
-  .menu .theme-toggle{width:100%;justify-content:flex-start;padding:10px 14px;margin:2px 0;color:#e4edf9}
-  .menu .theme-toggle-label{display:inline}
   .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -388,21 +389,21 @@ try {
         <span>SOFTWARE &amp; CONSULTING</span>
       </div>
     </a>
-    <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
     <ul class="menu" id="menu">
       <li><a href="#inicio">Inicio</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#equipo">Equipo</a></li>
-      <li>
+      <li><a href="#contacto" class="btn-nav">Contáctanos</a></li>
+    </ul>
+    <div class="nav-controls">
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false" title="Activar modo oscuro">
           <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
           <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m17.07 7.07-1.42-1.42M6.35 6.35 4.93 4.93m14.14 0-1.42 1.42M6.35 17.65l-1.42 1.42"/></svg>
           <span class="theme-toggle-label">Modo oscuro</span>
         </button>
-      </li>
-      <li><a href="#contacto" class="btn-nav">Contáctanos</a></li>
-    </ul>
+        <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -729,8 +730,14 @@ try {
 <script>
 /* ===================== MENÚ MÓVIL ===================== */
 const burger=document.getElementById('burger'), menu=document.getElementById('menu');
-burger.addEventListener('click',()=>{menu.classList.toggle('open');burger.classList.toggle('open')});
-menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.classList.remove('open')}));
+function setMenuOpen(open){
+  menu.classList.toggle('open',open);
+  burger.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',String(open));
+  burger.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
+}
+burger.addEventListener('click',()=>setMenuOpen(!menu.classList.contains('open')));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenuOpen(false)));
 
 /* ===================== TEMA OPCIONAL ===================== */
 const themeRoot=document.documentElement, themeToggle=document.getElementById('theme-toggle');

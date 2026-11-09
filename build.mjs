@@ -3,3 +3,4 @@ import { copyFile, mkdir, rm } from "node:fs/promises";
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist", { recursive: true });
 await copyFile("index.html", "dist/index.html");
+await copyFile("favicon.svg", "dist/favicon.svg");
