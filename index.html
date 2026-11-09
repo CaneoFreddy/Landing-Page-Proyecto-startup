@@ -1,16 +1,782 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
-    <title>BinCode - Soluciones de Software y Apps Moviles</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BINCODEQ | Software & Consulting</title>
+<meta name="description" content="BINCODEQ Software & Consulting: desarrollo de software a medida, integración de Inteligencia Artificial y consultoría tecnológica en Chile.">
+<style>
+/* =========================================================
+   VARIABLES DE MARCA (edite aquí colores y tipografías)
+   ========================================================= */
+:root{
+  --navy:#091930;
+  --navy-2:#0f2444;
+  --blue:#0066ff;
+  --cyan:#00d2ff;
+  --muted:#5a6e85;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --line:#d6e2f3;
+  --grid:rgba(0,102,255,.06);
+  --radius:18px;
+  --shadow:0 10px 30px rgba(9,25,48,.08);
+  --font:"Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono:"Consolas","SFMono-Regular","Menlo","Courier New",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  color:var(--navy);
+  background-color:var(--bg);
+  /* Retícula tipo blueprint */
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(rgba(0,102,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,102,255,.025) 1px,transparent 1px);
+  background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.container{width:min(1180px,100% - 40px);margin-inline:auto}
+.mono{font-family:var(--mono)}
+
+/* ===================== NAVBAR ===================== */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(9,25,48,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(0,210,255,.18);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .logo{width:46px;height:46px}
+.brand-text strong{display:block;color:#fff;font-size:1.25rem;letter-spacing:.22em;font-weight:800;line-height:1.1}
+.brand-text span{display:block;color:var(--cyan);font-size:.62rem;letter-spacing:.32em;font-weight:700;margin-top:3px}
+.menu{display:flex;gap:6px;list-style:none;align-items:center}
+.menu a{color:#c9d6ea;font-size:.92rem;font-weight:500;padding:9px 14px;border-radius:10px;transition:.2s}
+.menu a:hover{color:#fff;background:rgba(0,210,255,.1)}
+.menu .btn-nav{color:var(--navy);background:linear-gradient(135deg,var(--cyan),var(--blue));font-weight:700;color:#fff;margin-left:8px}
+.menu .btn-nav:hover{box-shadow:0 0 18px rgba(0,210,255,.55);background:linear-gradient(135deg,var(--cyan),var(--blue))}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:.3s}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;overflow:hidden;min-height:calc(100vh - 74px);display:flex;align-items:center;padding:80px 0}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::after{ /* halo central */
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 50% at 50% 48%,rgba(244,247,251,.92) 0%,rgba(244,247,251,.6) 45%,rgba(244,247,251,0) 75%);
+}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:860px;margin-inline:auto}
+.hero .iso{width:150px;height:150px;margin:0 auto 26px;filter:drop-shadow(0 12px 30px rgba(0,102,255,.35))}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:.78rem;color:var(--blue);
+  background:rgba(0,102,255,.07);border:1px solid rgba(0,102,255,.2);
+  padding:6px 14px;border-radius:999px;margin-bottom:22px;letter-spacing:.04em
+}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.9rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--muted);font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:680px;margin:22px auto 36px}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;
+  padding:15px 28px;border-radius:12px;transition:.25s;cursor:pointer;border:0;font-family:inherit
+}
+.btn-primary{color:#fff;background:linear-gradient(135deg,var(--blue),#0047d6);box-shadow:0 10px 25px rgba(0,102,255,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,102,255,.4),0 0 0 3px rgba(0,210,255,.25)}
+.btn-ghost{color:var(--navy);background:#fff;border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.hero-stats{display:flex;justify-content:center;gap:42px;margin-top:54px;flex-wrap:wrap}
+.hero-stats div{text-align:center}
+.hero-stats b{display:block;font-size:1.6rem;color:var(--navy)}
+.hero-stats span{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+
+/* ===================== MARCAS DE AGUA BINARIAS / CIRCUITOS ===================== */
+.watermark{position:absolute;font-family:var(--mono);font-size:13px;line-height:1.9;color:rgba(0,102,255,.13);letter-spacing:.12em;pointer-events:none;user-select:none;white-space:pre;z-index:1}
+.wm-tl{top:28px;left:28px}.wm-tr{top:28px;right:28px;text-align:right}
+.wm-bl{bottom:28px;left:28px}.wm-br{bottom:28px;right:28px;text-align:right}
+.circuit{position:absolute;pointer-events:none;z-index:1;opacity:.55}
+
+/* ===================== SECCIONES GENERALES ===================== */
+section{position:relative}
+.section{padding:110px 0;overflow:hidden}
+.section-head{text-align:center;max-width:700px;margin:0 auto 60px}
+.eyebrow{font-family:var(--mono);font-size:.8rem;color:var(--blue);letter-spacing:.18em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before,.eyebrow::after{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--blue))}
+.eyebrow::after{transform:scaleX(-1)}
+.section-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.2;margin:14px 0 14px;letter-spacing:-.01em}
+.section-head p{color:var(--muted);font-size:1.05rem}
+
+/* ===================== NOSOTROS ===================== */
+.about{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
+.about-text .eyebrow{margin-bottom:6px}
+.about-text h2{font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.2;margin:12px 0 18px;letter-spacing:-.01em}
+.about-text p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.values div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.values b{display:block;font-size:.95rem;margin-bottom:4px}
+.values span{font-size:.82rem;color:var(--muted);line-height:1.45;display:block}
+.code-win{
+  position:relative;background:#071226;border-radius:18px;overflow:hidden;
+  box-shadow:0 30px 60px rgba(9,25,48,.28),0 0 0 1px rgba(0,210,255,.18);
+}
+.code-win::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.cw-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;background:#0b1a33;border-bottom:1px solid rgba(0,210,255,.12)}
+.cw-bar i{width:11px;height:11px;border-radius:50%;background:#1d3a66}
+.cw-bar i:nth-child(1){background:#2a4f85}.cw-bar i:nth-child(2){background:#2563c4}.cw-bar i:nth-child(3){background:#00b4dc}
+.cw-bar span{margin-left:10px;font-family:var(--mono);font-size:.76rem;color:#7f94b2}
+.cw-body{padding:22px 22px 26px;font-family:var(--mono);font-size:.84rem;line-height:1.85;color:#c9d6ea;overflow-x:auto;white-space:pre}
+.cw-body .ln{color:#3b5478;display:inline-block;width:26px;user-select:none}
+.cw-body .k{color:#00d2ff}.cw-body .f{color:#5ea2ff}.cw-body .s{color:#8fe3c6}.cw-body .c{color:#4f6b90}.cw-body .n{color:#ffcf70}
+.cw-cursor{display:inline-block;width:8px;height:1.05em;background:var(--cyan);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cw-status{display:flex;justify-content:space-between;gap:10px;padding:10px 18px;background:#0b1a33;border-top:1px solid rgba(0,210,255,.12);font-family:var(--mono);font-size:.72rem;color:#7f94b2}
+.cw-status b{color:#8fe3c6;font-weight:400}
+
+/* ===================== FRANJA TECNOLÓGICA ===================== */
+.stack{border-block:1px solid var(--line);background:rgba(255,255,255,.7);backdrop-filter:blur(4px);padding:26px 0;overflow:hidden}
+.stack-inner{display:flex;align-items:center;gap:32px}
+.stack-label{flex:none;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.marquee{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:14px;width:max-content;animation:scroll 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.chip{font-family:var(--mono);font-size:.84rem;color:var(--navy);background:#fff;border:1px solid var(--line);padding:8px 16px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ===================== MÉTRICAS / COMPROMISOS ===================== */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:70px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.pillar{padding:28px 26px;border-right:1px solid var(--line);position:relative}
+.pillar:last-child{border-right:0}
+.pillar svg{width:26px;height:26px;stroke:var(--blue);margin-bottom:14px}
+.pillar b{display:block;font-size:1rem;margin-bottom:6px}
+.pillar span{font-size:.86rem;color:var(--muted);line-height:1.5;display:block}
+
+/* ===================== SERVICIOS ===================== */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{
+  position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:38px 32px 34px;box-shadow:var(--shadow);transition:.3s;overflow:hidden
+}
+.card::before{ /* borde de luz superior */
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:.4s
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(0,102,255,.35);box-shadow:0 20px 45px rgba(9,25,48,.12),0 0 0 1px rgba(0,210,255,.15)}
+.card:hover::before{transform:scaleX(1)}
+.card .num{position:absolute;top:22px;right:26px;font-family:var(--mono);font-size:.78rem;color:rgba(0,102,255,.35)}
+.icon-box{
+  width:62px;height:62px;border-radius:16px;display:grid;place-items:center;margin-bottom:24px;
+  background:radial-gradient(circle at 30% 30%,var(--navy-2),var(--navy));
+  box-shadow:0 8px 20px rgba(9,25,48,.25),inset 0 0 0 1px rgba(0,210,255,.3)
+}
+.icon-box svg{width:30px;height:30px;stroke:var(--cyan);filter:drop-shadow(0 0 4px rgba(0,210,255,.7))}
+.card h3{font-size:1.3rem;margin-bottom:12px}
+.card p{color:var(--muted);font-size:.96rem;margin-bottom:20px}
+.card ul{list-style:none;display:grid;gap:9px;border-top:1px dashed var(--line);padding-top:18px}
+.card li{font-size:.9rem;color:var(--navy);display:flex;gap:10px;align-items:center}
+.card li::before{content:"";width:7px;height:7px;border-radius:50%;border:2px solid var(--blue);flex:none}
+
+/* ===================== PROCESO ===================== */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;margin-top:80px}
+.process::before{content:"";position:absolute;top:26px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--blue) 0 8px,transparent 8px 16px);opacity:.35}
+.step{text-align:center;position:relative}
+.step .dot{width:54px;height:54px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;background:#fff;border:2px solid var(--blue);font-family:var(--mono);font-weight:700;color:var(--blue);box-shadow:0 0 0 6px var(--bg),0 0 20px rgba(0,102,255,.2);position:relative;z-index:1}
+.step h4{font-size:1rem;margin-bottom:6px}
+.step p{font-size:.86rem;color:var(--muted);max-width:220px;margin:auto}
+
+/* ===================== EQUIPO ===================== */
+.team-sec{background:linear-gradient(180deg,transparent,rgba(0,102,255,.04))}
+.team{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+.bcard{ /* tarjeta estilo presentación */
+  position:relative;background:linear-gradient(135deg,#fff 55%,#eef4ff);border:1px solid var(--line);
+  border-radius:22px;padding:34px 36px 32px;box-shadow:var(--shadow);overflow:hidden;transition:.3s
+}
+.bcard:hover{box-shadow:0 22px 50px rgba(9,25,48,.13);border-color:rgba(0,102,255,.3)}
+.bcard .bc-circuit{position:absolute;right:0;top:0;width:55%;height:100%;opacity:.6;pointer-events:none}
+.bcard .bc-bin{position:absolute;right:30px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:12px;line-height:1.85;color:rgba(0,102,255,.14);letter-spacing:.1em;white-space:pre;pointer-events:none}
+.bc-top{display:flex;align-items:center;gap:16px;position:relative}
+.bc-top .logo{width:64px;height:64px}
+.bc-top strong{display:block;font-size:1.35rem;letter-spacing:.2em;line-height:1.1}
+.bc-top span{display:block;font-size:.62rem;letter-spacing:.3em;color:var(--blue);font-weight:700;margin-top:4px}
+.bc-name{position:relative;margin-top:42px}
+.bc-name h3{font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.1;letter-spacing:-.01em}
+.bc-name .role{color:var(--blue);font-weight:700;font-size:1.1rem;margin-top:6px}
+.bc-contact{position:relative;margin-top:28px;display:grid;gap:10px}
+.bc-contact a{display:inline-flex;align-items:center;gap:12px;color:var(--muted);font-size:.98rem;width:fit-content;transition:.2s}
+.bc-contact a:hover{color:var(--blue)}
+.bc-contact svg{width:18px;height:18px;stroke:var(--blue);flex:none}
+.bc-foot{position:relative;margin-top:22px;font-family:var(--mono);font-size:.7rem;color:rgba(90,110,133,.45)}
+
+/* ===================== CONTACTO ===================== */
+.contact-box{
+  position:relative;overflow:hidden;border-radius:26px;padding:64px 56px;
+  background:radial-gradient(circle at 85% 20%,rgba(0,210,255,.25),transparent 40%),linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;
+  box-shadow:0 30px 60px rgba(9,25,48,.25)
+}
+.contact-box::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,210,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,210,255,.06) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.contact-box > *{position:relative}
+.contact-box h2{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.2}
+.contact-box p{color:#a9bcd6;margin-top:14px}
+.contact-actions{display:grid;gap:14px}
+.contact-actions a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(0,210,255,.25);transition:.25s}
+.contact-actions a:hover{background:rgba(0,210,255,.12);border-color:var(--cyan);box-shadow:0 0 22px rgba(0,210,255,.25)}
+.contact-actions small{display:block;color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em}
+.contact-actions b{font-size:1rem}
+.contact-actions .arrow{color:var(--cyan);font-size:1.3rem}
+
+/* ===================== FOOTER ===================== */
+footer{background:var(--navy);color:#a9bcd6;margin-top:110px;position:relative;overflow:hidden}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),transparent)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding:64px 0 44px}
+footer h5{color:#fff;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
+footer ul{list-style:none;display:grid;gap:10px;font-size:.92rem}
+footer a:hover{color:var(--cyan)}
+.foot-brand p{font-size:.9rem;margin-top:18px;max-width:300px}
+.foot-bottom{border-top:1px solid rgba(0,210,255,.12);padding:22px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem}
+.foot-bottom .mono{color:rgba(0,210,255,.4)}
+
+/* ===================== ANIMACIÓN DE APARICIÓN ===================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1024px){
+  .about{grid-template-columns:1fr;gap:40px}
+  .pillars{grid-template-columns:1fr 1fr}
+  .pillar:nth-child(2){border-right:0}
+  .pillar:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .services{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .burger{display:block}
+  .menu{position:absolute;top:74px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--navy);padding:14px 20px 22px;gap:4px;border-bottom:1px solid rgba(0,210,255,.2);display:none}
+  .menu.open{display:flex}
+  .menu .btn-nav{margin:8px 0 0;text-align:center}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .services,.team{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr 1fr;row-gap:40px}
+  .process::before{display:none}
+  .contact-box{grid-template-columns:1fr;padding:44px 28px}
+  .watermark{display:none}
+  .section{padding:80px 0}
+}
+@media (max-width:560px){
+  .values{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .pillar{border-right:0;border-bottom:1px solid var(--line)}
+  .stack-label{display:none}
+  .foot-grid{grid-template-columns:1fr}
+  .bcard{padding:28px 24px}
+  .bcard .bc-bin{display:none}
+  .hero-stats{gap:26px}
+  .brand-text span{letter-spacing:.2em}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     ISOTIPO REUTILIZABLE (se referencia con <use href="#iso-q">)
+     ========================================================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="qGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00d2ff"/>
+      <stop offset="1" stop-color="#0066ff"/>
+    </linearGradient>
+    <filter id="qGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <path id="ringPath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/>
+    <symbol id="iso-q" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="96" fill="#071226" stroke="#1f7bff" stroke-width="4"/>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(0,210,255,.12)" stroke-width="1"/>
+      <text font-family="Consolas, monospace" font-size="11.5" fill="#1d8fd8" letter-spacing="1.6">
+        <textPath href="#ringPath" startOffset="0">01010000·01000110·01010000·01000110·01010000·01000110·</textPath>
+      </text>
+      <g filter="url(#qGlow)" fill="none" stroke="url(#qGrad)" stroke-width="10" stroke-linecap="round">
+        <path d="M78,128 A38,38 0 1,1 128,118"/>
+        <path d="M110,108 L132,130"/>
+        <path d="M110,130 L122,120"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#inicio" class="brand" aria-label="BINCODEQ inicio">
+      <svg class="logo"><use href="#iso-q"/></svg>
+      <div class="brand-text">
+        <strong>BINCODEQ</strong>
+        <span>SOFTWARE &amp; CONSULTING</span>
+      </div>
+    </a>
+    <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <ul class="menu" id="menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#contacto" class="btn-nav">Contáctanos</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio">
+  <canvas id="net" aria-hidden="true"></canvas>
+
+  <div class="watermark wm-tl">01010000
+01000110
+10110010
+01101001
+00110101</div>
+  <div class="watermark wm-tr">01010000
+01000110
+10110010
+01101001
+00110101</div>
+  <div class="watermark wm-bl">01101001
+00110101
+10010110
+11001010
+01011001</div>
+  <div class="watermark wm-br">01101001
+00110101
+10010110
+11001010
+01011001</div>
+
+  <div class="container hero-content">
+    <svg class="iso"><use href="#iso-q"/></svg>
+    <div class="tag">Software · Inteligencia Artificial · Consultoría IT</div>
+    <h1>Transformamos tus procesos en <em>ventajas competitivas</em></h1>
+    <p class="lead">Diseñamos y desarrollamos software a medida, integramos Inteligencia Artificial en tus operaciones y te acompañamos con consultoría tecnológica estratégica para que tu empresa trabaje más rápido, con más control y mejores decisiones.</p>
+    <div class="cta-row">
+      <a href="#contacto" class="btn btn-primary">Agenda una reunión
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>100%</b><span>// desarrollo a medida</span></div>
+      <div><b>IA</b><span>// aplicada a procesos</span></div>
+      <div><b>1:1</b><span>// trato directo con fundadores</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FRANJA TECNOLÓGICA ===================== -->
+<div class="stack" aria-label="Tecnologías">
+  <div class="container stack-inner">
+    <span class="stack-label">// Stack tecnológico</span>
+    <div class="marquee"><div class="track"><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">APIs REST</span><span class="chip">Power BI</span><span class="chip">Modelos de lenguaje (LLM)</span><span class="chip">Machine Learning</span><span class="chip">Cloud</span><span class="chip">Docker</span><span class="chip">Automatización RPA</span><span class="chip">Integraciones ERP</span><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">APIs REST</span><span class="chip">Power BI</span><span class="chip">Modelos de lenguaje (LLM)</span><span class="chip">Machine Learning</span><span class="chip">Cloud</span><span class="chip">Docker</span><span class="chip">Automatización RPA</span><span class="chip">Integraciones ERP</span></div></div>
+  </div>
+</div>
+
+<!-- ===================== SERVICIOS ===================== -->
+<section class="section" id="servicios">
+  <svg class="circuit" style="left:0;top:60px" width="260" height="220" viewBox="0 0 260 220" fill="none" stroke="#0066ff" stroke-opacity=".25">
+    <path d="M0 40H120V110H200"/><path d="M0 150H70V200H240"/><circle cx="120" cy="40" r="4" fill="#0066ff" fill-opacity=".3"/><circle cx="200" cy="110" r="4" fill="#0066ff" fill-opacity=".3"/><circle cx="70" cy="150" r="4" fill="#0066ff" fill-opacity=".3"/><circle cx="240" cy="200" r="4" fill="#0066ff" fill-opacity=".3"/>
+  </svg>
+  <svg class="circuit" style="right:0;bottom:80px" width="260" height="220" viewBox="0 0 260 220" fill="none" stroke="#0066ff" stroke-opacity=".25">
+    <path d="M260 30H150V100H40"/><path d="M260 170H180V120H90"/><circle cx="150" cy="30" r="4" fill="#0066ff" fill-opacity=".3"/><circle cx="40" cy="100" r="4" fill="#0066ff" fill-opacity=".3"/><circle cx="180" cy="170" r="4" fill="#0066ff" fill-opacity=".3"/><circle cx="90" cy="120" r="4" fill="#0066ff" fill-opacity=".3"/>
+  </svg>
+
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2>Tecnología que resuelve problemas reales de tu negocio</h2>
+      <p>Combinamos ingeniería de software, inteligencia artificial y visión de negocio para entregar soluciones medibles, seguras y escalables.</p>
+    </div>
+
+    <div class="services">
+      <article class="card reveal">
+        <span class="num">01</span>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+        </div>
+        <h3>Desarrollo a Medida</h3>
+        <p>Sistemas web, aplicaciones móviles y plataformas internas construidas exactamente para tus procesos, no al revés.</p>
+        <ul>
+          <li>Aplicaciones web y móviles</li>
+          <li>Sistemas de gestión y control</li>
+          <li>APIs e integraciones con ERP</li>
+          <li>Dashboards y reportería</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="num">02</span>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"/><circle cx="4.5" cy="6" r="1.8"/><circle cx="19.5" cy="6" r="1.8"/><circle cx="4.5" cy="18" r="1.8"/><circle cx="19.5" cy="18" r="1.8"/><path d="M6 7l4 3.5M18 7l-4 3.5M6 17l4-3.5M18 17l-4-3.5"/></svg>
+        </div>
+        <h3>Integración de IA</h3>
+        <p>Incorporamos Inteligencia Artificial en tus flujos de trabajo para automatizar tareas, analizar datos y apoyar decisiones.</p>
+        <ul>
+          <li>Asistentes y agentes inteligentes</li>
+          <li>Automatización de procesos</li>
+          <li>Análisis predictivo de datos</li>
+          <li>Procesamiento de documentos</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <span class="num">03</span>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/><path d="M15 7h5v5"/></svg>
+        </div>
+        <h3>Consultoría IT</h3>
+        <p>Diagnóstico, arquitectura y hoja de ruta tecnológica para invertir con criterio y transformar digitalmente tu organización.</p>
+        <ul>
+          <li>Diagnóstico de procesos</li>
+          <li>Arquitectura de soluciones</li>
+          <li>Transformación digital</li>
+          <li>Control de gestión con datos</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Metodología -->
+    <div class="process">
+      <div class="step reveal"><div class="dot">01</div><h4>Diagnóstico</h4><p>Entendemos tu operación y detectamos oportunidades.</p></div>
+      <div class="step reveal"><div class="dot">02</div><h4>Diseño</h4><p>Definimos la solución, alcance, plazos y costos.</p></div>
+      <div class="step reveal"><div class="dot">03</div><h4>Desarrollo</h4><p>Construimos con entregas iterativas y validación continua.</p></div>
+      <div class="step reveal"><div class="dot">04</div><h4>Soporte</h4><p>Implementamos, capacitamos y acompañamos la evolución.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NOSOTROS ===================== -->
+<section class="section" id="nosotros">
+  <div class="container about">
+    <div class="about-text reveal">
+      <span class="eyebrow">Nosotros</span>
+      <h2>Ingeniería, datos e IA al servicio de tu operación</h2>
+      <p>BINCODEQ nace de la experiencia en control de gestión y desarrollo tecnológico: sabemos lo que significa operar con planillas dispersas, información tardía y procesos manuales. Por eso construimos herramientas que se adaptan a la realidad de cada empresa.</p>
+      <p>Acompañamos a nuestros clientes en todo el ciclo: diagnóstico, diseño, desarrollo, puesta en marcha y soporte continuo, con metodologías ágiles y estándares de calidad de la industria.</p>
+      <div class="values">
+        <div><b>Cercanía</b><span>Trato directo con los fundadores en cada proyecto.</span></div>
+        <div><b>Precisión</b><span>Soluciones medibles, pensadas para tus procesos.</span></div>
+        <div><b>Innovación</b><span>IA aplicada con criterio, no por moda.</span></div>
+      </div>
+    </div>
+
+    <div class="code-win reveal" aria-hidden="true">
+      <div class="cw-bar"><i></i><i></i><i></i><span>bincodeq / proyecto.py</span></div>
+<div class="cw-body"><span class="ln">1</span><span class="k">from</span> bincodeq <span class="k">import</span> Diagnostico, Solucion, IA
+<span class="ln">2</span>
+<span class="ln">3</span><span class="c"># De procesos manuales a decisiones con datos</span>
+<span class="ln">4</span>procesos = Diagnostico(<span class="s">"tu_empresa"</span>).<span class="f">mapear</span>()
+<span class="ln">5</span>
+<span class="ln">6</span>solucion = Solucion(
+<span class="ln">7</span>    procesos,
+<span class="ln">8</span>    stack=[<span class="s">"web"</span>, <span class="s">"movil"</span>, <span class="s">"cloud"</span>],
+<span class="ln">9</span>    ia=IA.<span class="f">integrar</span>(<span class="s">"automatizacion"</span>),
+<span class="ln">10</span>)
+<span class="ln">11</span>
+<span class="ln">12</span>solucion.<span class="f">desplegar</span>(soporte=<span class="k">True</span>)
+<span class="ln">13</span><span class="c"># → eficiencia ↑  tiempos ↓  control ✓</span> <span class="cw-cursor"></span></div>
+      <div class="cw-status"><span><b>●</b> build exitoso</span><span>UTF-8 · Python</span></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="pillars reveal">
+      <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg><b>Seguridad</b><span>Buenas prácticas de desarrollo y protección de datos desde el diseño.</span></div>
+      <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Plazos claros</b><span>Entregas iterativas con hitos definidos y visibilidad del avance.</span></div>
+      <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><b>Escalabilidad</b><span>Arquitecturas preparadas para crecer junto a tu negocio.</span></div>
+      <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>Soporte cercano</b><span>Acompañamiento post implementación y mejora continua.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EQUIPO ===================== -->
+<section class="section team-sec" id="equipo">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Fundadores</span>
+      <h2>Un equipo directo, sin intermediarios</h2>
+      <p>Trabajas directamente con quienes diseñan y lideran cada proyecto.</p>
+    </div>
+
+    <div class="team">
+      <!-- Tarjeta CEO -->
+      <article class="bcard reveal">
+        <svg class="bc-circuit" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMid slice" fill="none" stroke="#0066ff" stroke-opacity=".22">
+          <path d="M60 30H230M120 30V90H230V30M20 160H300M150 160V230H300M60 250V290M220 250V300"/>
+          <circle cx="120" cy="90" r="3.5" fill="#0066ff" fill-opacity=".35"/><circle cx="230" cy="90" r="3.5" fill="#0066ff" fill-opacity=".35"/><circle cx="150" cy="230" r="3.5" fill="#0066ff" fill-opacity=".35"/><circle cx="230" cy="30" r="3.5" fill="#0066ff" fill-opacity=".35"/>
+        </svg>
+        <div class="bc-bin">01010000
+01000110
+10110010
+01101001
+00110101
+10010110
+11001010</div>
+        <div class="bc-top">
+          <svg class="logo"><use href="#iso-q"/></svg>
+          <div><strong>BINCODEQ</strong><span>SOFTWARE &amp; CONSULTING</span></div>
+        </div>
+        <div class="bc-name">
+          <h3>Patrick Trujillo</h3>
+          <div class="role">CEO / Fundador</div>
+        </div>
+        <div class="bc-contact">
+          <a href="tel:+56961120254">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+            +56 9 6112 0254
+          </a>
+          <a href="https://wa.me/56961120254" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+            WhatsApp directo
+          </a>
+        </div>
+        <div class="bc-foot">// 01010000 · 01000110</div>
+      </article>
+
+      <!-- Tarjeta CTO -->
+      <article class="bcard reveal">
+        <svg class="bc-circuit" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMid slice" fill="none" stroke="#0066ff" stroke-opacity=".22">
+          <path d="M60 30H230M120 30V90H230V30M20 160H300M150 160V230H300M60 250V290M220 250V300"/>
+          <circle cx="120" cy="90" r="3.5" fill="#0066ff" fill-opacity=".35"/><circle cx="230" cy="90" r="3.5" fill="#0066ff" fill-opacity=".35"/><circle cx="150" cy="230" r="3.5" fill="#0066ff" fill-opacity=".35"/><circle cx="230" cy="30" r="3.5" fill="#0066ff" fill-opacity=".35"/>
+        </svg>
+        <div class="bc-bin">01010000
+01000110
+10110010
+01101001
+00110101
+10010110
+11001010</div>
+        <div class="bc-top">
+          <svg class="logo"><use href="#iso-q"/></svg>
+          <div><strong>BINCODEQ</strong><span>SOFTWARE &amp; CONSULTING</span></div>
+        </div>
+        <div class="bc-name">
+          <h3>Freddy Caneo</h3>
+          <div class="role">CTO / Fundador</div>
+        </div>
+        <div class="bc-contact">
+          <a href="tel:+56926252821">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+            +56 9 2625 2821
+          </a>
+          <a href="https://wa.me/56926252821" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+            WhatsApp directo
+          </a>
+        </div>
+        <div class="bc-foot">// 01010000 · 01000110</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-box reveal">
+      <div>
+        <span class="mono" style="color:var(--cyan);font-size:.78rem;letter-spacing:.15em">// HABLEMOS DE TU PROYECTO</span>
+        <h2 style="margin-top:10px">¿Listo para convertir tus procesos en ventaja competitiva?</h2>
+        <p>Cuéntanos tu desafío. Te respondemos con una propuesta clara, plazos definidos y facturación electrónica.</p>
+      </div>
+      <div class="contact-actions">
+        <a href="mailto:contacto@bincodeq.com?subject=Consulta%20desde%20bincodeq.com">
+          <div><small>ESCRÍBENOS</small><b>contacto@bincodeq.com</b></div><span class="arrow">→</span>
+        </a>
+        <a href="https://wa.me/56961120254" target="_blank" rel="noopener">
+          <div><small>WHATSAPP</small><b>+56 9 6112 0254</b></div><span class="arrow">→</span>
+        </a>
+        <a href="tel:+56926252821">
+          <div><small>LLÁMANOS</small><b>+56 9 2625 2821</b></div><span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="logo" style="width:46px;height:46px"><use href="#iso-q"/></svg>
+          <div class="brand-text"><strong>BINCODEQ</strong><span>SOFTWARE &amp; CONSULTING</span></div>
+        </div>
+        <p>Desarrollo de software a medida, integración de Inteligencia Artificial y consultoría tecnológica para empresas.</p>
+      </div>
+      <div>
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="mailto:contacto@bincodeq.com">contacto@bincodeq.com</a></li>
+          <li><a href="tel:+56961120254">+56 9 6112 0254</a></li>
+          <li><a href="tel:+56926252821">+56 9 2625 2821</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Servicios</h5>
+        <ul>
+          <li><a href="#servicios">Desarrollo a medida</a></li>
+          <li><a href="#servicios">Integración de IA</a></li>
+          <li><a href="#servicios">Consultoría IT</a></li>
+          <li><a href="#servicios">Soporte y mejora continua</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> BINCODEQ Software &amp; Consulting. Todos los derechos reservados.</span>
+      <span class="mono">01010000 · 01000110 · bincodeq.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===================== MENÚ MÓVIL ===================== */
+const burger=document.getElementById('burger'), menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{menu.classList.toggle('open');burger.classList.toggle('open')});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.classList.remove('open')}));
+
+/* ===================== AÑO AUTOMÁTICO ===================== */
+document.getElementById('year').textContent=new Date().getFullYear();
+
+/* ===================== APARICIÓN AL HACER SCROLL ===================== */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*90); io.unobserve(e.target);} });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===================== CANVAS: RED NEURONAL + BINARIO ===================== */
+(function(){
+  const canvas=document.getElementById('net'), ctx=canvas.getContext('2d');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W,H,DPR,nodes=[],bits=[],mouse={x:-9999,y:-9999};
+  const BLUE='0,102,255', CYAN='0,210,255';
+
+  function resize(){
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*DPR; canvas.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+    const count=Math.round(Math.min(110,Math.max(40,W*H/14000)));
+    nodes=Array.from({length:count},()=>({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
+      r:Math.random()*1.8+1.2,
+      bin:Math.random()<.22, ch:Math.random()<.5?'0':'1', t:Math.random()*200
+    }));
+    // columnas de bits que caen suavemente
+    bits=Array.from({length:Math.round(W/60)},()=>({
+      x:Math.random()*W, y:Math.random()*H, s:Math.random()*.4+.15,
+      str:Array.from({length:8},()=>Math.random()<.5?'0':'1').join('')
+    }));
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // bits de fondo
+    ctx.font='12px Consolas, monospace';
+    bits.forEach(b=>{
+      ctx.fillStyle=`rgba(${BLUE},.07)`;
+      for(let i=0;i<b.str.length;i++) ctx.fillText(b.str[i],b.x,b.y+i*15);
+      b.y+=b.s; if(b.y>H){b.y=-130;b.x=Math.random()*W;}
+    });
+
+    const maxD=Math.min(170,W/7);
+    // conexiones
+    for(let i=0;i<nodes.length;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){
+        const b=nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+        if(d<maxD){
+          ctx.strokeStyle=`rgba(${BLUE},${(1-d/maxD)*.28})`;
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          // trazo tipo circuito (ortogonal) para algunas conexiones
+          if((i+j)%5===0){ ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,a.y); ctx.lineTo(b.x,b.y); }
+          else { ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); }
+          ctx.stroke();
+        }
+      }
+      // conexión con el mouse
+      const md=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+      if(md<200){
+        ctx.strokeStyle=`rgba(${CYAN},${(1-md/200)*.7})`;
+        ctx.lineWidth=1.2;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke();
+      }
+    }
+
+    // nodos
+    nodes.forEach(n=>{
+      const near=Math.hypot(n.x-mouse.x,n.y-mouse.y)<200;
+      if(n.bin){
+        n.t++; if(n.t>160){n.t=0;n.ch=n.ch==='0'?'1':'0';}
+        ctx.font='bold 13px Consolas, monospace';
+        ctx.fillStyle=near?`rgba(${CYAN},.95)`:`rgba(${BLUE},.45)`;
+        ctx.fillText(n.ch,n.x-4,n.y+4);
+      }else{
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r+(near?1.2:0),0,Math.PI*2);
+        ctx.fillStyle=near?`rgba(${CYAN},1)`:`rgba(${BLUE},.55)`;
+        if(near){ctx.shadowColor=`rgba(${CYAN},.9)`;ctx.shadowBlur=12;}
+        ctx.fill(); ctx.shadowBlur=0;
+      }
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<0||n.x>W) n.vx*=-1;
+      if(n.y<0||n.y>H) n.vy*=-1;
+    });
+
+    // pulso de datos viajando por una conexión aleatoria
+    const t=performance.now()/1000;
+    for(let k=0;k<3;k++){
+      const a=nodes[(Math.floor(t*0.7)+k*13)%nodes.length], b=nodes[(Math.floor(t*0.7)+k*13+1)%nodes.length];
+      if(!a||!b) continue;
+      const p=(t*0.7)%1;
+      const x=a.x+(b.x-a.x)*p, y=a.y+(b.y-a.y)*p;
+      ctx.beginPath(); ctx.arc(x,y,2.4,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${CYAN},.9)`; ctx.shadowColor=`rgba(${CYAN},1)`; ctx.shadowBlur=14; ctx.fill(); ctx.shadowBlur=0;
+    }
+
+    if(!reduce) requestAnimationFrame(draw);
+  }
+
+  const hero=canvas.parentElement;
+  hero.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
+  hero.addEventListener('mouseleave',()=>{mouse.x=mouse.y=-9999;});
+  window.addEventListener('resize',resize);
+  resize(); draw();
+})();
+</script>
+</body>
 </html>
