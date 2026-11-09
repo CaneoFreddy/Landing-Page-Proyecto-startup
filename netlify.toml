@@ -1,0 +1,3 @@
+[build]
+  command = "echo 'Static HTML: no build step required'"
+  publish = "."
